@@ -1,0 +1,5 @@
+- Keine Client-Mods.
+- Ziel: Java Server Plugins + JSON Assets.
+- Wenn API unbekannt: Interfaces + TODO.
+- Kein Fantasie-Code ohne Kennzeichnung.
+- Build & Tests müssen laufe

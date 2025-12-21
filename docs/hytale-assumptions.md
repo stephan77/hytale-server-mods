@@ -1,0 +1,4 @@
+- Modding ist serverseitig.
+- Plugins als Java JAR.
+- Assets via JSON.
+- API noch nicht final → Stubs erlaubt.
