@@ -1,0 +1,4 @@
+[INFO] Enabling example-plugin
+![INFO] Registered command: hello
+*[INFO] [reply] Hello from example-plugin!
+ [INFO] Disabling example-plugin

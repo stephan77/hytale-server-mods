@@ -1,0 +1,47 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group = "dev.yourname.hytale"
+version = "0.1.0"
+
+java {
+    toolchain {
+        // Stell hier später um (z.B. 21/23/25), wenn Hytale offiziell was festlegt.
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation platform("org.junit:junit-bom:5.11.0")
+    testImplementation "org.junit.jupiter:junit-jupiter"
+
+    // Fix für "Failed to load JUnit Platform" unter manchen Gradle/JDK-Setups
+    testRuntimeOnly "org.junit.platform:junit-platform-launcher"
+}
+
+tasks.test {
+    useJUnitPlatform()
+}
+test {
+    useJUnitPlatform()
+}
+
+application {
+    // Nur fürs lokale Testen/Run – später ersetzt du das durch echten Plugin-Entry.
+    mainClass = "dev.yourname.hytale.example.Main"
+}
+
+jar {
+    manifest {
+        attributes(
+            "Implementation-Title": "Example Plugin",
+            "Implementation-Version": version
+        )
+    }
+}

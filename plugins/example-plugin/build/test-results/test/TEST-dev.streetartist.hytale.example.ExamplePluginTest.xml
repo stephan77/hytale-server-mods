@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="dev.streetartist.hytale.example.ExamplePluginTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2025-12-21T17:59:43.253Z" hostname="codespaces-38fed1" time="0.061">
+  <properties/>
+  <testcase name="pluginHasStableId()" classname="dev.streetartist.hytale.example.ExamplePluginTest" time="0.03"/>
+  <testcase name="enableDoesNotCrash()" classname="dev.streetartist.hytale.example.ExamplePluginTest" time="0.027"/>
+  <system-out><![CDATA[[INFO] Enabling example-plugin
+[INFO] Registered command: hello
+[INFO] [reply] Hello from example-plugin!
+[INFO] Disabling example-plugin
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
