@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="dev.streetartist.hytale.example.ExamplePluginTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2025-12-21T18:22:44.128Z" hostname="codespaces-38fed1" time="0.034">
+<testsuite name="dev.streetartist.hytale.example.ExamplePluginTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2025-12-21T18:45:40.712Z" hostname="codespaces-38fed1" time="0.035">
   <properties/>
-  <testcase name="pluginHasStableId()" classname="dev.streetartist.hytale.example.ExamplePluginTest" time="0.018"/>
-  <testcase name="enableDoesNotCrash()" classname="dev.streetartist.hytale.example.ExamplePluginTest" time="0.013"/>
+  <testcase name="pluginHasStableId()" classname="dev.streetartist.hytale.example.ExamplePluginTest" time="0.017"/>
+  <testcase name="enableDoesNotCrash()" classname="dev.streetartist.hytale.example.ExamplePluginTest" time="0.016"/>
   <system-out><![CDATA[[INFO] Enabling example-plugin
 [INFO] Registered command: hello
 [INFO] [reply] Hello from example-plugin!
