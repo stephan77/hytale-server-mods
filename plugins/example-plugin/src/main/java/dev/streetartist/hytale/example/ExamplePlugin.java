@@ -13,9 +13,13 @@ public final class ExamplePlugin implements Plugin {
     @Override
     public void onEnable(Server server) {
         server.logger().info("Enabling " + id());
-        server.commands().register("hello", (sender, args) ->
-                sender.reply("Hello from " + id() + "!")
-        );
+        server.commands().register("hello", (sender, args) -> {
+            if (!sender.hasPermission("example.hello")) {
+                sender.reply("You don't have permission: example.hello");
+                return;
+            }
+            sender.reply("Hello from " + id() + "!");
+        });
     }
 
     @Override
