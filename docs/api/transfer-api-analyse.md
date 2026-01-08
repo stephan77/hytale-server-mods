@@ -1,10 +1,10 @@
-# TransferAPI – Analyse
+# TransferAPI – Analyse Hytale
 
 ## Quelle
 - Artefakt: com.shailist.hytale:transfer-api
 - Version: 0.1.0-SNAPSHOT
 - Quelle: Artifactory (snapshots)
-- Stand: <Datum>
+- Stand: 14.12.2025
 
 ---
 
@@ -90,3 +90,48 @@ Kurzfazit:
 - Ressourcenmodell basiert auf immutable Variants
 - Fundament für Inventare, Maschinen, Automation
 - Nicht direkt Teil der Gameplay-Modding-API
+
+### Transaction API Erkenntnisse
+
+- Transaktionen sind Engine-weit, nicht Plugin-spezifisch
+- Thread-lokal, verschachtelbar, ACID-ähnlich
+- Rollback ist Default, Commit explizit
+- Teilnehmer müssen Snapshot/Commit selbst handhaben
+- Gameplay-API wird diese Komplexität kapseln
+- Events sind sekundär, State-Änderungen primär transaktional
+
+### Transaction.Lifecycle Erkenntnisse
+
+- Lifecycle beschreibt den Zustand des Transaktions-Stacks pro Thread
+- NONE → kein Kontext
+- OPEN → Änderungen erlaubt, nicht final
+- CLOSING → CloseCallbacks, keine neuen Änderungen
+- OUTER_CLOSING → globale Finalisierung
+- Trennung von State-Änderung und State-Auswirkung
+- Events & World-Updates erst nach OUTER_CLOSING
+
+### TransactionContext Erkenntnisse
+
+- Teilnehmer erhalten nur TransactionContext, nicht Transaction
+- Kein Commit/Abort durch Teilnehmer möglich
+- addCloseCallback → lokaler Commit/Rollback
+- addOuterCloseCallback → globale Effekte nach Finalisierung
+- Callbacks laufen LIFO
+- Nested Transactions erlaubt, aber kontrolliert
+- Engine behält immer die Kontrolle
+
+### CloseCallback & OuterCloseCallback
+
+- CloseCallback:
+  - lokal, transaktionsbezogen
+  - Commit/Rollback des eigenen States
+  - keine globalen Effekte
+
+- OuterCloseCallback:
+  - nach kompletter Finalisierung
+  - Events, World-Updates, Sync
+  - nur einmal pro äußerer Transaktion
+
+- Result:
+  - COMMITTED oder ABORTED
+  - kein Zwischenzustand
